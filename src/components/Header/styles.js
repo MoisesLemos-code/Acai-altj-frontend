@@ -9,7 +9,7 @@ export const Styles = styled.form`
 
   .navbar{
         background-color: ${props => theme.backgroundColor};
-  }
+ }
   #navbar-brand{ 
        font-size: 30px;
        color: #FFFFFF;

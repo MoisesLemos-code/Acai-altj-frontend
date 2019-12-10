@@ -10,11 +10,9 @@ import {
 import { toast } from 'react-toastify';
 import { Styles } from "./styles";
 
-
 export default function Login({ history }) {
     const [usuario, setUsuario] = useState('');
     const [senha, setSenha] = useState('');
-
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -67,9 +65,13 @@ export default function Login({ history }) {
                                 <Form.Check type="checkbox" label="Manter conectado" />
                             </Form.Group> */}
                             <Col className="col text-center">
-                                <Button className="col-lg-12" type="submit" id="loginEnter">
+                                <Button
+                                    className="col-lg-12"
+                                    type="submit"
+                                    id="loginEnter"
+                                >
                                     Entrar
-                       </Button>
+                                </Button>
                             </Col>
                         </Form>
                     </Col>

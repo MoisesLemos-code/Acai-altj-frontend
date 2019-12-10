@@ -9,6 +9,7 @@ import SignUp from "../pages/SignUp";
 
 import Main from "../pages/Main";
 import Cliente from "../pages/Cliente";
+import Produto from "../pages/Produto"
 
 
 export default function Routes() {
@@ -19,7 +20,8 @@ export default function Routes() {
         <Route path="/SignIn" exact component={SignIn} />
         <Route path="/ForgotPass/" exact component={ForgotPass} />
         <Route path="/SignUp/" exact component={SignUp} />
-        <Route path="/Cliente/" exact component={Cliente} isPrivate />
+        <Route path="/Clientes/" exact component={Cliente} isPrivate />
+        <Route path="/Produtos/" exact component={Produto} isPrivate />
       </Switch>
     </BrowserRouter>
   );

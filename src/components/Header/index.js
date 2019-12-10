@@ -31,10 +31,8 @@ export default class header extends Component {
                <Navbar.Collapse id="responsive-navbar-nav">
                   <Nav className="mr-auto">
                      <NavDropdown title="Cadastros" id="collasible-nav-dropdown">
-                        <NavDropdown.Item href="/Cliente/">Clientes</NavDropdown.Item>
+                        <NavDropdown.Item href="/Clientes/">Clientes</NavDropdown.Item>
                         <NavDropdown.Item href="/Produtos/">Produtos</NavDropdown.Item>
-                        <NavDropdown.Item href="/Funcionarios/">Funcionários</NavDropdown.Item>
-                        <NavDropdown.Item href="/Fornecedores/">Fornecedores</NavDropdown.Item>
                      </NavDropdown>
                   </Nav>
                   <Nav>

@@ -26,14 +26,10 @@ export const Styles = styled.div`
         animation: moveX 600ms;
         animation-delay: 200ms;
         animation-fill-mode: backwards;
-    }  
-     #salvarCliente{
-     background-color: ${props => theme.secondColor};
-     border-color: ${props => theme.secondColor}
     }
-    #addCliente{
+    #addProduto{
        width: 288px;
-       height: 193px;
+       height: 233px;
        padding: 10px;
        margin-left: 10px;
        background-color: #FFFFFF;
@@ -44,7 +40,7 @@ export const Styles = styled.div`
        z-index: 2;
        animation-name: fade;
        animation-duration: 500ms;
-       font-size: 100px;
+       font-size: 120px;
        text-align: center;
        cursor: pointer;
     }
@@ -52,5 +48,9 @@ export const Styles = styled.div`
      margin-bottom: 0px;
      margin-top: 10px;
     }
-
+    #salvarCliente{
+        margin-top: 20px;
+        background-color: ${props => theme.secondColor};
+        border-color: ${props => theme.borderPrimary};
+    }
 `;
