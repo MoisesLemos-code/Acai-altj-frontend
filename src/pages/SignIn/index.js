@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../../services/api"
-import { Container, Form, Button, Col, Row } from "react-bootstrap";
+import { Spinner, Container, Form, Button, Col, Row } from "react-bootstrap";
 import {
     login,
 } from '../../services/auth';
@@ -10,9 +10,37 @@ import {
 import { toast } from 'react-toastify';
 import { Styles } from "./styles";
 
+function Loader() {
+    return (
+        <Spinner
+            as="span"
+            animation="border"
+            size="sm"
+            role="status"
+            aria-hidden="true"
+        />
+    )
+}
+
+
+function ButtonLoad({ isLoading, acesso, children, ...props }) {
+    return (
+        <Button {...props}
+            className="col-lg-12"
+            type="submit"
+            id={acesso ? 'loginOut' : 'loginEnter'}
+        >
+            {isLoading ? <Loader /> : children}
+        </Button>
+    );
+}
+
 export default function Login({ history }) {
     const [usuario, setUsuario] = useState('');
     const [senha, setSenha] = useState('');
+    const [acesso, setAcesso] = useState(false)
+    const [isButtonLoading, setIsButtonLoading] = useState(false);
+
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -22,9 +50,13 @@ export default function Login({ history }) {
                 password: senha
             });
             login(response.data.token, response.data.user.name);
-            history.push('/')
+            setAcesso(true)
+            setTimeout(() => {
+                history.push('/')
+            }, 1000);
         } catch (err) {
             toast.error('Email ou senha inválido!');
+            setIsButtonLoading(false);
         }
     }
 
@@ -44,7 +76,7 @@ export default function Login({ history }) {
                     <Col lg={3}></Col>
                     <Col lg={5}>
                         <h2>Açaí ∆</h2>
-                        <Form onSubmit={handleSubmit} >
+                        <Form onSubmit={handleSubmit} id={acesso ? 'formOut' : 'formIn'} >
                             <Form.Group controlId="formUser">
                                 <Form.Label>Usuário</Form.Label>
                                 <Form.Control required type="text"
@@ -65,13 +97,16 @@ export default function Login({ history }) {
                                 <Form.Check type="checkbox" label="Manter conectado" />
                             </Form.Group> */}
                             <Col className="col text-center">
-                                <Button
-                                    className="col-lg-12"
+                                <ButtonLoad
                                     type="submit"
-                                    id="loginEnter"
+                                    onClick={() => {
+                                        setIsButtonLoading(true);
+                                    }}
+                                    isLoading={isButtonLoading}
+                                    acesso={acesso}
                                 >
                                     Entrar
-                                </Button>
+                              </ButtonLoad>
                             </Col>
                         </Form>
                     </Col>

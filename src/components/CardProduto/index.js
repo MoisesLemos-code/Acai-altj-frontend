@@ -32,8 +32,8 @@ export default class CardProduto extends Component {
       }
     )
   }
-  cardDelete(file) {
-    api.delete(`/produto/delete/${file._id}`, {
+  async cardDelete(file) {
+    await api.delete(`/produto/delete/${file._id}`, {
       headers: {
         Authorization: "Bearer ".concat(localStorage.getItem('@MYAPP/token'))
       }
@@ -41,7 +41,7 @@ export default class CardProduto extends Component {
     window.location.reload()
   }
 
-  cardUpdate(file, event) {
+  async cardUpdate(file, event) {
     if (isNaN(file.estoque)) {
       event.preventDefault()
       toast.warn('Valor de estoque inválido!');
@@ -49,8 +49,8 @@ export default class CardProduto extends Component {
       event.preventDefault()
       toast.warn('Valor de produto inválido!');
     } if (!isNaN(file.estoque) && !isNaN(file.valor)) {
-
-      api.put(`/produto/update/${file.id}`, {
+      event.preventDefault()
+      await api.put(`/produto/update/${file.id}`, {
         descricao: file.descricao,
         tamanho: file.tamanho,
         estoque: file.estoque,
@@ -61,6 +61,7 @@ export default class CardProduto extends Component {
           Authorization: "Bearer ".concat(localStorage.getItem('@MYAPP/token'))
         }
       });
+      window.location.reload();
     }
   }
 
@@ -73,7 +74,7 @@ export default class CardProduto extends Component {
             <Card bg="dark" text="white" style={{ width: '18rem' }}>
               <Card.Header>{this.props.todo.descricao}</Card.Header>
               <Card.Body>
-                < Form onSubmit={this.cardUpdate.bind(this, this.state)} id="formCard">
+                < Form onSubmit={e => this.cardUpdate(this.state, e)} id="formCard">
                   {this.state.status ?
                     <>
                       <Form.Group >

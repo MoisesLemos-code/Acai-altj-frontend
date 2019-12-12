@@ -62,4 +62,8 @@ export default createGlobalStyle`
              transform: translateY(0%);
         }
     }
+    @keyframes fadeOut {
+   0% {opacity: 1;}
+   100% {opacity: 0;} 
+} 
 `;

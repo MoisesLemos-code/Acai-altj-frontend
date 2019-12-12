@@ -29,16 +29,17 @@ export default class CardCliente extends Component {
       }
     )
   }
-  cardDelete(file) {
-    api.delete(`/cliente/delete/${file._id}`, {
+  async cardDelete(file) {
+    await api.delete(`/cliente/delete/${file._id}`, {
       headers: {
         Authorization: "Bearer ".concat(localStorage.getItem('@MYAPP/token'))
       }
     });
     window.location.reload()
   }
-  cardUpdate(file) {
-    api.put(`/cliente/update/${file.id}`, {
+  async cardUpdate(file, event) {
+    event.preventDefault();
+    await api.put(`/cliente/update/${file.id}`, {
       nome: file.nome,
       endereco: file.endereco,
       email: file.email
@@ -48,6 +49,7 @@ export default class CardCliente extends Component {
         Authorization: "Bearer ".concat(localStorage.getItem('@MYAPP/token'))
       }
     });
+    window.location.reload()
   }
 
 
@@ -59,7 +61,7 @@ export default class CardCliente extends Component {
             <Card bg="dark" text="white" style={{ width: '18rem' }}>
               <Card.Header>{this.props.todo.nome}</Card.Header>
               <Card.Body>
-                < Form onSubmit={this.cardUpdate.bind(this, this.state)} id="formCard">
+                < Form onSubmit={e => this.cardUpdate(this.state, e)} id="formCard">
                   {this.state.status ?
                     <>
                       <Form.Group >

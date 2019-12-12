@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import api from "../../services/api"
 import { Form, Button, Modal, Card, Container, Row } from "react-bootstrap";
+import { toast } from 'react-toastify';
 // import socket from 'socket.io-client'
 
 import CardCliente from '../../components/CardCliente'
@@ -23,7 +24,7 @@ export default class Cliente extends Component {
     this.handleClose = this.handleClose.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     const response = await api.get(`/cliente/list/`);
-    this.setState({ card: response.data, showModal: false });
+    this.setState({ card: response.data, showModal: false, loading: true });
   }
 
   atualizarCards = () => {
@@ -46,11 +47,18 @@ export default class Cliente extends Component {
     })
   }
 
-  handleSubmit() {
+  alertLoading() {
+    toast.warn('Aguarde o carregamento!')
+  }
+
+  async handleSubmit(e) {
+    e.preventDefault()
     this.setState({
       ...this.state, showModal: false
     })
-    api.post(`/cliente/create/`, this.cliente);
+    await api.post(`/cliente/create/`, this.cliente);
+    toast.success('Cliente cadastrado com sucesso!');
+    window.location.reload()
   }
 
 
@@ -90,7 +98,7 @@ export default class Cliente extends Component {
               </Form>
             </Modal>
 
-            <Card bg="dark" text="white" id="addCliente" onClick={this.handleShow}>
+            <Card bg="dark" text="white" id="addCliente" onClick={this.state.loading ? this.handleShow : this.alertLoading}>
               <Card.Text>
                 +
              </Card.Text>

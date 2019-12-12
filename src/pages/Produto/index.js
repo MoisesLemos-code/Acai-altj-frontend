@@ -25,7 +25,7 @@ export default class Produto extends Component {
     this.handleClose = this.handleClose.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     const response = await api.get(`/produto/list/`);
-    this.setState({ card: response.data, showModal: false });
+    this.setState({ card: response.data, showModal: false, loading: true });
   }
 
   atualizarCards = () => {
@@ -48,7 +48,11 @@ export default class Produto extends Component {
     })
   }
 
-  handleSubmit(event) {
+  alertLoading() {
+    toast.warn('Aguarde o carregamento!')
+  }
+
+  async handleSubmit(event) {
 
     if (isNaN(this.produto.estoque)) {
       event.preventDefault()
@@ -57,11 +61,13 @@ export default class Produto extends Component {
       event.preventDefault()
       toast.warn('Valor de produto inválido!');
     } if (!isNaN(this.produto.estoque) && !isNaN(this.produto.valor)) {
+      event.preventDefault()
       this.setState({
         ...this.state, showModal: false
       })
-      api.post(`/produto/create/`, this.produto);
+      await api.post(`/produto/create/`, this.produto);
       toast.success('Produto cadastrado com sucesso!');
+      window.location.reload();
     }
   }
 
@@ -75,7 +81,7 @@ export default class Produto extends Component {
               <Modal.Header closeButton>
                 <Modal.Title>Cadastrar novo produto</Modal.Title>
               </Modal.Header>
-              <Form onSubmit={this.handleSubmit} id="panel">
+              <Form onSubmit={e => this.handleSubmit(e)} id="panel">
                 <Modal.Body>
                   <Form.Row>
                     <Col as={Col} md="7">
@@ -139,7 +145,7 @@ export default class Produto extends Component {
               </Form>
             </Modal>
 
-            <Card bg="dark" text="white" id="addProduto" onClick={this.handleShow}>
+            <Card bg="dark" text="white" id="addProduto" onClick={this.state.loading ? this.handleShow : this.alertLoading}>
               <Card.Text>
                 +
              </Card.Text>
