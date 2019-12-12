@@ -98,8 +98,8 @@ export default class Cliente extends Component {
               </Form>
             </Modal>
 
-            <Card bg="dark" text="white" id="addCliente" onClick={this.state.loading ? this.handleShow : this.alertLoading}>
-              <Card.Text>
+            <Card text="white" id="addCliente" onClick={this.state.loading ? this.handleShow : this.alertLoading}>
+              <Card.Text id="textAdd">
                 +
              </Card.Text>
             </Card>

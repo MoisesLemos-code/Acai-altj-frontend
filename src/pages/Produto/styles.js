@@ -27,11 +27,16 @@ export const Styles = styled.div`
         animation-delay: 200ms;
         animation-fill-mode: backwards;
     }
+    #textAdd{
+        color: ${props => theme.primaryColor}
+    }
     #addProduto{
-       width: 288px;
-       height: 233px;
-       padding: 10px;
-       margin-left: 10px;
+       width: 200px;
+       height: 200px;
+       padding: 0px;
+       margin: 0 auto;
+       margin-left: 10px auto;
+       margin-bottom: 10px;
        background-color: #FFFFFF;
        border-style: solid;
        border-width: 1px;
@@ -44,6 +49,12 @@ export const Styles = styled.div`
        text-align: center;
        cursor: pointer;
     }
+    #addProduto:hover{
+      background-color: ${props => theme.secondColor};
+      #textAdd{
+        color: #FFFFFF;
+      }
+ }
     .form-label{
      margin-bottom: 0px;
      margin-top: 10px;

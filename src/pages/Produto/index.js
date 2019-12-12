@@ -145,8 +145,8 @@ export default class Produto extends Component {
               </Form>
             </Modal>
 
-            <Card bg="dark" text="white" id="addProduto" onClick={this.state.loading ? this.handleShow : this.alertLoading}>
-              <Card.Text>
+            <Card text="white" id="addProduto" onClick={this.state.loading ? this.handleShow : this.alertLoading}>
+              <Card.Text id="textAdd">
                 +
              </Card.Text>
             </Card>

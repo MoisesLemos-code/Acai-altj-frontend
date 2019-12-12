@@ -31,11 +31,16 @@ export const Styles = styled.div`
      background-color: ${props => theme.secondColor};
      border-color: ${props => theme.secondColor}
     }
+    #textAdd{
+        color: ${props => theme.primaryColor}
+    }
     #addCliente{
-       width: 288px;
-       height: 193px;
-       padding: 10px;
-       margin-left: 10px;
+       width: 200px;
+       height: 200px;
+       padding: 0px;
+       margin: 0 auto;
+       margin-left: 10px auto;
+       margin-bottom: 10px;
        background-color: #FFFFFF;
        border-style: solid;
        border-width: 1px;
@@ -44,13 +49,18 @@ export const Styles = styled.div`
        z-index: 2;
        animation-name: fade;
        animation-duration: 500ms;
-       font-size: 100px;
+       font-size: 120px;
        text-align: center;
        cursor: pointer;
     }
+    #addCliente:hover{
+      background-color: ${props => theme.secondColor};
+      #textAdd{
+        color: #FFFFFF;
+        }
+      }
     .form-label{
      margin-bottom: 0px;
      margin-top: 10px;
     }
-
 `;
