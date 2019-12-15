@@ -4,9 +4,9 @@ import { theme } from '../../styles/themes'
 export const Styles = styled.div`
 
 #list-produto{
-       width: 350px;
+       width: 400px;
        height: 400px;
-       padding: 0px;
+       padding: 5px;
        margin-bottom: 10px;
        background-color: #FFFFFF;
        border-style: solid;
@@ -17,5 +17,13 @@ export const Styles = styled.div`
        animation-name: fade;
        animation-duration: 500ms;
        overflow: scroll;
+  }
+  .list-group-item{
+        max-height: 100px;
+        background-color: ${props => theme.secondColor};  
+        overflow: hidden;
+        animation: moveX 600ms;
+        animation-delay: 100ms;
+        animation-fill-mode: backwards;
   }
   `;

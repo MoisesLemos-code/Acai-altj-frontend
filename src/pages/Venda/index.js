@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import api from "../../services/api"
-import { Button, Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { toast } from 'react-toastify';
 
 import { Styles } from './styles';
@@ -14,6 +14,7 @@ export default class Venda extends Component {
 
   state = {
     venda: {
+      _id: 0,
       numero: 101,
       statusVenda: false,
       totalBruto: 0,
@@ -26,8 +27,9 @@ export default class Venda extends Component {
       tamanho: "250ml",
       estoque: 0,
       valor: 0
-    },
+    }, produtosVenda: [],
     btn: "Iniciar venda",
+    prodSelect: false,
     vendaStatus: false,
     first: true
   }
@@ -54,24 +56,72 @@ export default class Venda extends Component {
   }
   onSelectItem = async item => {
     this.setState({
-      ...this.state, itemVenda: {
+      ...this.state,
+      itemVenda: {
+        produto_id: item._id,
         descricao: item.descricao,
         tamanho: item.tamanho,
-        estoque: item.estoque.$numberDecimal,
-        valor: item.valor.$numberDecimal
-      }
+        quantidade: 1,
+        valor: item.valor.$numberDecimal,
+      },
+      prodSelect: true
     })
   }
-  async onHandleBtn() {
+
+  async onHandleBtn(item) {
     await this.setState({ ...this.state, vendaStatus: true })
-
+    this.setState({
+      ...this.state, itemVenda: {
+        ...this.state.itemVenda, quantidade: item
+      }
+    })
     if (this.state.first) {
-      await api.post(`/venda/create/`, this.state.venda);
+      const response = await api.post(`/venda/create/`, this.state.venda);
       await this.setState({ ...this.state, first: false })
+      this.setState({
+        ...this.state, venda:
+        {
+          _id: response.data._id,
+          numero: response.data.numero,
+          statusVenda: response.data.statusVenda,
+          totalBruto: response.data.totalBruto.$numberDecimal,
+          totalFinal: response.data.totalFinal.$numberDecimal,
+          cliente_id: response.data.cliente_id,
+        }
+      })
       toast.success('Venda iniciada!');
+    } else {
+      if (this.state.prodSelect) {
+        this.setState({
+          ...this.state,
+          produtosVenda: [
+            ...this.state.produtosVenda,
+            this.state.itemVenda
+          ]
+        })
+        try {
+          await api.put(`/venda/update/${this.state.venda._id}`, {
+            numero: this.state.venda.numero,
+            statusVenda: this.state.venda.statusVenda,
+            totalBruto: this.state.venda.totalBruto,
+            totalFinal: this.state.venda.totalFinal,
+            cliente_id: this.state.venda.cliente_id,
+            produtos: this.state.produtosVenda
+          }, {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: "Bearer ".concat(localStorage.getItem('@MYAPP/token'))
+            }
+          });
+        } catch (err) {
+          toast.error('Falha ao inserir produto!');
+        }
+      } else {
+        toast.warn('Selecione um produto!');
+      }
     }
-
   }
+
 
   render() {
     return (
@@ -80,19 +130,18 @@ export default class Venda extends Component {
           <h2 id="title">Venda</h2>
           <Row >
             <Col xs lg="4">
-              <ListProdutoVenda />
+              <ListProdutoVenda venda={this.state.venda} />
             </Col>
             <Col xs lg="4">
-              <PainelVenda item={this.state.itemVenda} />
+              <PainelVenda
+                item={this.state.itemVenda}
+                vendaStatus={this.state.vendaStatus}
+                btn={this.state.btn}
+                onClick={this.onHandleBtn} />
               <div id="total-venda">
                 <h4>Total</h4>
                 <h3>R${this.state.venda.totalFinal}</h3>
               </div>
-              <Button id="btn-inserir"
-                onClick={this.onHandleBtn.bind(this)}
-              >
-                {this.state.vendaStatus ? "Inserir" : this.state.btn}
-              </Button>
             </Col>
             <Col xs lg="4">
               <div id="content">

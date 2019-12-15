@@ -1,43 +1,56 @@
 import React, { Component } from 'react';
-import { InputGroup, Form, FormControl, Container } from "react-bootstrap";
+import { InputGroup, Form, FormControl, Button } from "react-bootstrap";
 
 import { Styles } from './styles';
 
 export default class BuscaProduto extends Component {
-
+  _isMounted = false;
   state = {
-    quantidade: 1,
-    valor: 0,
+    item: {
+      descricao: String,
+      tamanho: String,
+      quantidade: 1,
+      valor: 0
+    },
     total: 0
+  }
+  constructor(props) {
+    super(props);
+    this.onHandleBtn = this.onHandleBtn.bind(this);
   }
 
   async componentDidMount() {
+    this._isMounted = true;
     this.setState({
-      quantidade: 1, valor: 0, total: 0
+      item: {
+        quantidade: 1, valor: 0
+      },
+      total: 0
     });
   }
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
 
   handleQuantidade(e) {
     if (isNaN(e.target.value)) {
-      this.setState({ ...this.state, quantidade: 1 })
+      this.setState({ ...this.state, item: { ...this.state.item, quantidade: 1 } })
     } else {
-      this.setState({ ...this.state, quantidade: e.target.value })
+      this.setState({ ...this.state, item: { ...this.state.item, quantidade: e.target.value } })
     }
   }
-
-  handleValor(e) {
-    if (isNaN(e.target.value)) {
-      this.setState({ ...this.state, valor: 1 })
-    } else {
-      this.setState({ ...this.state, valor: e.target.value })
-    }
+  onHandleBtn(e) {
+    e.preventDefault();
+    this.props.onClick(this.state.item.quantidade)
   }
 
   render() {
     return (
       <Styles>
-        <div id="Panel-Venda">
-          <Form>
+
+        <Form onSubmit={this.onHandleBtn.bind(this)}>
+          <div id="Panel-Venda">
             <Form.Group id="item-descricao">
               <Form.Label id="descricao-text">{this.props.item.descricao}</Form.Label>
             </Form.Group>
@@ -52,7 +65,7 @@ export default class BuscaProduto extends Component {
                 <FormControl
                   className="item-venda-qtd-valor"
                   placeholder="quantidade"
-                  value={this.state.quantidade}
+                  value={this.state.item.quantidade}
                   onChange={e => this.handleQuantidade(e)} />
               </InputGroup>
               <div id="item-valor">
@@ -62,10 +75,15 @@ export default class BuscaProduto extends Component {
               </div>
             </Form.Group>
             <div id="total-item">
-              <h3>R${this.state.total = this.state.quantidade * this.props.item.valor}</h3>
+              <h3>R${this.state.total = this.state.item.quantidade * this.props.item.valor}</h3>
             </div>
-          </Form>
-        </div>
+            <Button id="btn-inserir"
+              type="submit"
+            >
+              {this.props.vendaStatus ? "Inserir" : this.props.btn}
+            </Button>
+          </div>
+        </Form>
       </Styles>
     );
   }

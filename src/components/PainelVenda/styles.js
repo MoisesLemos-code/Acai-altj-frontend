@@ -19,7 +19,7 @@ export const Styles = styled.div`
     color: #FFFFFF;
   }
   #item-descricao{
-       max-height: 95px;
+       height: 85px;
        margin-bottom: 10px;
        padding: 5px;
        background-color: ${props => theme.secondColor};
@@ -96,6 +96,14 @@ export const Styles = styled.div`
        box-shadow: 2px 4px 5px #555;
        overflow: hidden;
        color: #6CF7B3;
+  }
+  #btn-inserir{
+      margin-top: 10px;
+      background-color: ${props => theme.primaryColor};
+      border-style: none;
+  }
+  #btn-inserir:hover{
+     background-color: ${props => theme.secondColor}
   }
 
 `;

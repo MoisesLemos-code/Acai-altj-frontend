@@ -35,21 +35,13 @@ export const Styles = styled.div`
   #total-venda{
        width: 400px;
        height: 90px;
-       margin-top: 10px;
+       margin-top: 40px;
        padding: 10px;
        background-color: ${props => theme.secondColor};
        border-radius: 5px;
        box-shadow: 2px 4px 5px #555;
        overflow: hidden;
        color: #FFFFFF;
-  }
-  #btn-inserir{
-      margin-top: 10px;
-      background-color: ${props => theme.primaryColor};
-      border-style: none;
-  }
-  #btn-inserir:hover{
-     background-color: ${props => theme.secondColor}
   }
   .row{
       margin-top: 30px;
