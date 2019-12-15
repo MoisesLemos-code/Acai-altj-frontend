@@ -34,6 +34,7 @@ export default class header extends Component {
                         <NavDropdown.Item href="/Clientes/">Clientes</NavDropdown.Item>
                         <NavDropdown.Item href="/Produtos/">Produtos</NavDropdown.Item>
                      </NavDropdown>
+                     <Nav.Link href="/Venda/">Venda</Nav.Link>
                   </Nav>
                   <Nav>
                      <Navbar.Brand id="navbar-User">

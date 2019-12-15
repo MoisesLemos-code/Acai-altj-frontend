@@ -14,6 +14,9 @@ export const Styles = styled.div`
     overflow: hidden;
     z-index: 1;
   }
+  .card:hover{
+    box-shadow: 2px 4px 5px #666;
+  }
   .card-body{
     padding: 0px;
     margin: 0px;
@@ -32,15 +35,15 @@ export const Styles = styled.div`
     text-align: center;
   }
   .btnEdit{
-    width: 90px;
+    width: 200px;
     margin-top: 20px;
   }
   .btn-card{
-     background-color: ${props => theme.secondColor};
+     background-color:  ${props => theme.primaryColor};
      border-color: ${props => theme.secondColor}
   }
   .btn-card:hover{
-    background-color: ${props => theme.primaryColor};
+    background-color: ${props => theme.secondColor};
     border-color: ${props => theme.primaryColor}
   }
 

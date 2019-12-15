@@ -34,7 +34,6 @@ export const Styles = styled.div`
        width: 200px;
        height: 200px;
        padding: 0px;
-       margin: 0 auto;
        margin-left: 10px auto;
        margin-bottom: 10px;
        background-color: #FFFFFF;
@@ -53,6 +52,7 @@ export const Styles = styled.div`
       background-color: ${props => theme.secondColor};
       #textAdd{
         color: #FFFFFF;
+        text-shadow: 2px 4px 5px #666;
       }
  }
     .form-label{

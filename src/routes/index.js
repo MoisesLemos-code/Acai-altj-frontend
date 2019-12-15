@@ -10,6 +10,7 @@ import SignUp from "../pages/SignUp";
 import Main from "../pages/Main";
 import Cliente from "../pages/Cliente";
 import Produto from "../pages/Produto"
+import Venda from "../pages/Venda"
 
 
 export default function Routes() {
@@ -22,6 +23,7 @@ export default function Routes() {
         <Route path="/SignUp/" exact component={SignUp} />
         <Route path="/Clientes/" exact component={Cliente} isPrivate />
         <Route path="/Produtos/" exact component={Produto} isPrivate />
+        <Route path="/Venda/" exact component={Venda} isPrivate />
       </Switch>
     </BrowserRouter>
   );

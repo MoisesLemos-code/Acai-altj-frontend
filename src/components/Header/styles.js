@@ -26,15 +26,15 @@ export const Styles = styled.form`
          border-color: ${props => theme.secondColor};
          color: ${props => theme.secondColor};
    }
-   #navbar-button:hover{
-        color: white;
-        background: ${props => theme.primaryColor};
-        box-shadow: inset 0px 25px 4px #FA5858;
-   }
    #btn-logoff:hover{
         color: white;
         background: ${props => theme.primaryColor};
         box-shadow: ${props => theme.primaryShadow};
+   }
+   #navbar-button:hover{
+        color: white;
+        background: ${props => theme.primaryColor};
+        box-shadow: inset 0px 25px 4px #FA5858;
    }
    #taskBar{
          margin-left: 15px;

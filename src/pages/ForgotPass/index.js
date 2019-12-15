@@ -35,7 +35,7 @@ export default function ForgotPass() {
                 <Form.Label>E-mail</Form.Label>
                 <Form.Control required type="email" />
                 <Form.Text className="text-muted">
-                  *Será encaminhado um link para o seu e-mail, você poderá alterar usa senha através dele.
+                  *Será encaminhado um link para o seu e-mail, você poderá alterar sua senha através dele.
             </Form.Text>
               </Form.Group>
               <Col className="col text-center">
