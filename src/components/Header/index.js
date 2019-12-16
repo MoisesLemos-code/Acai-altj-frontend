@@ -39,8 +39,13 @@ export default class header extends Component {
                   <Nav>
                      <Navbar.Brand id="navbar-User">
                         {this.state.user}
-                        <Button variant="outline" type="submit" id="btn-logoff" onClick={this.handleLogoff}>Sair</Button>
                      </Navbar.Brand>
+                     <Nav id="navbar-Info">
+                        <NavDropdown title="" id="collasible-nav-dropdown">
+                           <NavDropdown.Item href="/Config/">Configurações</NavDropdown.Item>
+                        </NavDropdown>
+                     </Nav>
+                     <Button variant="outline" type="submit" id="btn-logoff" onClick={this.handleLogoff}>Sair</Button>
                   </Nav>
                </Navbar.Collapse>
             </Navbar>

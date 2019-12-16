@@ -17,6 +17,9 @@ export const Styles = styled.form`
    #navbar-brand:hover{
          color: ${props => theme.secondColor}
    }
+   #navbar-Info{
+         margin-right: 50px;
+   }
    #navbar-button{
          border-color: ${props => theme.primaryColor};
          color: ${props => theme.primaryColor};

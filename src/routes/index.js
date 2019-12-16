@@ -11,6 +11,7 @@ import Main from "../pages/Main";
 import Cliente from "../pages/Cliente";
 import Produto from "../pages/Produto"
 import Venda from "../pages/Venda"
+import Config_admin from "../pages/Config_admin"
 
 
 export default function Routes() {
@@ -24,6 +25,7 @@ export default function Routes() {
         <Route path="/Clientes/" exact component={Cliente} isPrivate />
         <Route path="/Produtos/" exact component={Produto} isPrivate />
         <Route path="/Venda/" exact component={Venda} isPrivate />
+        <Route path="/Config/" exact component={Config_admin} isPrivate isAdmin />
       </Switch>
     </BrowserRouter>
   );

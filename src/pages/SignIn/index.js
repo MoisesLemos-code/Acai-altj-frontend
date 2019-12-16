@@ -49,7 +49,8 @@ export default function Login({ history }) {
                 name: usuario,
                 password: senha
             });
-            login(response.data.token, response.data.user.name);
+            const { token, user: userData } = response.data;
+            login(token, userData.name, userData.isAdmin);
             setAcesso(true)
             setTimeout(() => {
                 history.push('/')

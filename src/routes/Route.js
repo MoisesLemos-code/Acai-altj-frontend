@@ -3,7 +3,9 @@ import {
   isAuthenticated,
   isTokenExpired,
   logout,
+  userLocal,
 } from '../services/auth';
+import { toast } from 'react-toastify';
 
 import { Route, Redirect } from "react-router-dom";
 import Main from '../pages/Main'
@@ -11,6 +13,7 @@ import Main from '../pages/Main'
 export default function RouteWrapper({
   component: Component,
   isPrivate = false,
+  isAdmin = false,
   ...rest
 }) {
   //const signed = !!localStorage.getItem('@MYAPP/token');
@@ -26,7 +29,10 @@ export default function RouteWrapper({
     return <Redirect to="/" />
   }
 
-
+  if (isAuthenticated() && isPrivate && isAdmin && !userLocal()) {
+    toast.warn("Desculpe...somente usuários administradores podem acessar está página!")
+    return <Redirect to="/" />
+  }
 
 
   return (
