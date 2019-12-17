@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, NavDropdown, Button } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, Dropdown, DropdownButton } from "react-bootstrap";
 import {
    logout,
 } from '../../services/auth';
@@ -37,15 +37,15 @@ export default class header extends Component {
                      <Nav.Link href="/Venda/">Venda</Nav.Link>
                   </Nav>
                   <Nav>
-                     <Navbar.Brand id="navbar-User">
-                        {this.state.user}
-                     </Navbar.Brand>
-                     <Nav id="navbar-Info">
-                        <NavDropdown title="" id="collasible-nav-dropdown">
-                           <NavDropdown.Item href="/Config/">Configurações</NavDropdown.Item>
-                        </NavDropdown>
-                     </Nav>
-                     <Button variant="outline" type="submit" id="btn-logoff" onClick={this.handleLogoff}>Sair</Button>
+                     <DropdownButton
+                        alignRight
+                        title={this.state.user}
+                        id="dropdown-menu-align-right"
+                     >
+                        <Dropdown.Item href="/Config/">Configurações</Dropdown.Item>
+                        <Dropdown.Divider />
+                        <Dropdown.Item id="btn-logoff" href="/SignIn" onClick={this.handleLogoff}>Sair</Dropdown.Item>
+                     </DropdownButton>
                   </Nav>
                </Navbar.Collapse>
             </Navbar>

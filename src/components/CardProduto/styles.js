@@ -3,7 +3,7 @@ import { theme } from '../../styles/themes'
 
 export const Styles = styled.div`
   *{
-    margin-left: 10px;
+    margin-right: 10px;
     z-index: 1;
   }
   .card{
@@ -18,7 +18,7 @@ export const Styles = styled.div`
     box-shadow: 2px 4px 5px #666;
   }
   .card-body{
-    padding: 0px;
+    padding: 5px;
     margin: 0px;
   }
   #formCard{

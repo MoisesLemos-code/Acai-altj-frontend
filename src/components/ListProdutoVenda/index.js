@@ -10,19 +10,25 @@ export default class ListProdutoVenda extends Component {
     produtos: []
   }
 
-  async componentDidUpdate(props) {
-    if (this.props.venda._id !== 0) {
-      const response = await api.get(`/venda/${this.props.venda._id}`);
-      this.setState({ produtos: response.data.produtos })
-    }
-  }
+  // async componentDidUpdate(props) {
+  //   if (this.props.venda !== undefined) {
+  //     const response = this.props.venda//await api.get(`/venda/${this.props.venda._id}`);
+  //     await this.setState({ produtos: response })
+
+  // const valorTotal = await response.reduce(
+  //   (contador, produto) => contador + produto.valor.$numberDecimal * produto.quantidade.$numberDecimal,
+  //   0
+  // )
+  //     this.props.onChange(valorTotal)
+  //   }
+  // }
 
   render() {
     return (
       <Styles>
         <div id="list-produto">
           <ListGroup>
-            {this.state.produtos && this.state.produtos.map(i => {
+            {this.props.venda !== undefined && this.props.venda.map(i => {
               return <ListProdutoVendaItem
                 key={i._id}
                 todo={i}

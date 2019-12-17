@@ -100,6 +100,18 @@ export default class Venda extends Component {
           ]
         })
         try {
+          const valorTotal = await this.state.produtosVenda.reduce(
+            (contador, produto) => contador + produto.valor * produto.quantidade,
+            0
+          )
+          await this.setState({
+            ...this.state, venda: {
+              ...this.state.venda,
+              totalBruto: valorTotal,
+              totalFinal: valorTotal
+            }
+          })
+
           await api.put(`/venda/update/${this.state.venda._id}`, {
             numero: this.state.venda.numero,
             statusVenda: this.state.venda.statusVenda,
@@ -122,7 +134,6 @@ export default class Venda extends Component {
     }
   }
 
-
   render() {
     return (
       <Styles>
@@ -130,7 +141,14 @@ export default class Venda extends Component {
           <h2 id="title">Venda</h2>
           <Row >
             <Col xs lg="4">
-              <ListProdutoVenda venda={this.state.venda} />
+              <ListProdutoVenda venda={this.state.produtosVenda} onChange={value => this.setState({
+                ...this.state,
+                venda: {
+                  ...this.state.venda,
+                  totalBruto: value,
+                  totalFinal: value
+                }
+              })} />
             </Col>
             <Col xs lg="4">
               <PainelVenda

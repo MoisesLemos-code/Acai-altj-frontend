@@ -30,7 +30,7 @@ export default function RouteWrapper({
   }
 
   if (isAuthenticated() && isPrivate && isAdmin && !userLocal()) {
-    toast.warn("Desculpe...somente usuários administradores podem acessar está página!")
+    toast.info("Desculpe...somente usuários administradores podem acessar essa página!")
     return <Redirect to="/" />
   }
 

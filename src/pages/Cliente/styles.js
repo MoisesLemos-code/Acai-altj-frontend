@@ -38,7 +38,7 @@ export const Styles = styled.div`
        width: 200px;
        height: 200px;
        padding: 0px;
-       margin-left: 10px auto;
+       margin-right: 10px;
        margin-bottom: 10px;
        background-color: #FFFFFF;
        border-style: solid;

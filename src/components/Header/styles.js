@@ -25,13 +25,13 @@ export const Styles = styled.form`
          color: ${props => theme.primaryColor};
    }
    #btn-logoff{
-         margin-left: 20px;
+         margin: 0 auto;
          border-color: ${props => theme.secondColor};
          color: ${props => theme.secondColor};
    }
    #btn-logoff:hover{
         color: white;
-        background: ${props => theme.primaryColor};
+        background: ${props => theme.styleColor};
         box-shadow: ${props => theme.primaryShadow};
    }
    #navbar-button:hover{
@@ -49,7 +49,10 @@ export const Styles = styled.form`
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
   }
-
+  #dropdown-menu-align-right{
+        background-color: ${props => theme.styleColor};
+        border-style: none;
+  }
 
 
 `;
