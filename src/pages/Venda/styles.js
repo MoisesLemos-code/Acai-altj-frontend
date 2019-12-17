@@ -40,6 +40,10 @@ export const Styles = styled.div`
        background-color: ${props => theme.secondColor};
        border-radius: 5px;
        box-shadow: 2px 4px 5px #555;
+       animation-name: fade;
+       animation-fill-mode: backwards;
+       animation-duration: 500ms;
+       animation-delay: 300ms;
        overflow: hidden;
        color: #FFFFFF;
   }
