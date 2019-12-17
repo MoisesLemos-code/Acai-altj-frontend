@@ -3,7 +3,7 @@ import { theme } from '../../styles/themes'
 
 export const Styles = styled.div`
     main{
-        margin-top: 60px;
+        margin-top: 50px;
         width: 100%;
         height: 100%;
     }
